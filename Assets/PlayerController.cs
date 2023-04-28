@@ -43,6 +43,11 @@ public class PlayerController : MonoBehaviour
             score++;
             Debug.Log("Score: " + score.ToString());
         }
+        if (other.gameObject.CompareTag("Trap"))
+        {
+            health--;
+            Debug.Log("Health: " + health.ToString());
+        }
 
     }
 }
