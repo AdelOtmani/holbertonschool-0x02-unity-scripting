@@ -2,13 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour {
+public class PlayerController : MonoBehaviour
+{
 
 	public float speed = 1500f;
 	public Rigidbody Rb;
+    private int score = 0;
+    public int health = 5;
+
 	// Use this for initialization
 	void Start () {
-
 	}
 
 	// Update is called once per frame
@@ -32,4 +35,15 @@ public class PlayerController : MonoBehaviour {
             Rb.AddForce(0, 0, -speed * Time.deltaTime);
         }
     }
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag("Pickup"))
+        {
+            other.gameObject.SetActive(false);
+            score++;
+            Debug.Log("Score: " + score.ToString());
+        }
+
+    }
 }
+
