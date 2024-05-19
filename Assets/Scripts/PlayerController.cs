@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour {
 
@@ -34,6 +35,12 @@ public class PlayerController : MonoBehaviour {
         {
             Rb.AddForce(0, 0, -speed * Time.deltaTime);
         }
+        if (health == 0)
+        {
+            Debug.Log("Game Over!");
+            health = 5;
+            SceneManager.LoadScene(0);
+        }
 	}
     void OnTriggerEnter(Collider other)
     {
@@ -47,6 +54,10 @@ public class PlayerController : MonoBehaviour {
         {
             health--;
             Debug.Log("Health:" + health);
+        }
+        if (other.gameObject.CompareTag("Goal"))
+        {
+            Debug.Log("You Win!");
         }
     }
 }
